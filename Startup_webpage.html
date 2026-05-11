@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>NovaAI Landing Page</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #333;
+    }
+
+    /* Navbar */
+    header {
+      background: #111827;
+      padding: 18px 8%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: white;
+      font-size: 30px;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #60a5fa;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 8%;
+      background:
+        linear-gradient(rgba(17, 24, 39, 0.8),
+          rgba(17, 24, 39, 0.8)),
+        url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400');
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      background: #2563eb;
+      color: white;
+      padding: 14px 35px;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: 0.4s;
+      font-weight: 500;
+    }
+
+    .hero-btn:hover {
+      transform: scale(1.08);
+      background: #1d4ed8;
+    }
+
+    /* Features */
+    .features {
+      padding: 90px 8%;
+      background: white;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: 42px;
+      color: #111827;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: #666;
+      line-height: 1.8;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      background: #f5f7fb;
+      padding: 35px;
+      border-radius: 20px;
+      text-align: center;
+      transition: 0.4s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-card i {
+      font-size: 50px;
+      color: #2563eb;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 15px;
+      color: #111827;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 90px 8%;
+      background: #eef2ff;
+    }
+
+    .testimonial-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .testimonial-card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      width: 320px;
+      transition: 0.4s;
+    }
+
+    .testimonial-card:hover {
+      transform: scale(1.04);
+    }
+
+    .testimonial-card p {
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-card h4 {
+      color: #2563eb;
+    }
+
+    /* CTA */
+    .cta {
+      padding: 90px 8%;
+      text-align: center;
+      background: #111827;
+      color: white;
+    }
+
+    .cta h2 {
+      font-size: 45px;
+      margin-bottom: 20px;
+    }
+
+    .cta p {
+      margin-bottom: 30px;
+      line-height: 1.8;
+    }
+
+    /* Contact */
+    .contact-section {
+      padding: 90px 8%;
+      background: white;
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 50px;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .contact-left h3 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #111827;
+    }
+
+    .contact-left p {
+      line-height: 1.9;
+      color: #555;
+      margin-bottom: 35px;
+      font-size: 17px;
+    }
+
+    .contact-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .contact-info i {
+      color: #2563eb;
+      font-size: 22px;
+      margin-right: 15px;
+    }
+
+    .contact-form {
+      background: #f5f7fb;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 12px;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .contact-form textarea {
+      resize: none;
+    }
+
+    .contact-form button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 35px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+
+    .contact-form button:hover {
+      background: #1d4ed8;
+    }
+
+    /* Footer */
+    footer {
+      background: black;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    footer a {
+      color: white;
+      margin: 0 12px;
+      font-size: 24px;
+      transition: 0.3s;
+    }
+
+    footer a:hover {
+      color: #60a5fa;
+    }
+
+    /* Responsive */
+    @media(max-width:768px) {
+
+      nav {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .section-title h2,
+      .cta h2 {
+        font-size: 34px;
+      }
+
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+
+    <nav>
+
+      <div class="logo">
+        NovaAI
+      </div>
+
+      <div class="nav-links">
+
+        <a href="#features">Features</a>
+
+        <a href="#testimonials">Testimonials</a>
+
+        <a href="#contact">Contact</a>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <h1>
+        Smart AI Solutions For Modern Businesses
+      </h1>
+
+      <p>
+        NovaAI helps startups automate workflows,
+        improve productivity, and grow faster using
+        modern Artificial Intelligence tools.
+      </p>
+
+      <a href="#features"
+        class="hero-btn">
+        Explore Features
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+
+    <div class="section-title">
+
+      <h2>Our Features</h2>
+
+      <p>
+        Powerful tools designed for startups and creators
+      </p>
+
+    </div>
+
+    <div class="feature-grid">
+
+      <div class="feature-card">
+
+        <i class="bi bi-robot"></i>
+
+        <h3>AI Automation</h3>
+
+        <p>
+          Automate repetitive tasks and save time
+          with smart AI-powered workflows.
+        </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <i class="bi bi-speedometer2"></i>
+
+        <h3>Fast Performance</h3>
+
+        <p>
+          Experience lightning-fast tools optimized
+          for speed and efficiency.
+        </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <i class="bi bi-shield-check"></i>
+
+        <h3>Secure Platform</h3>
+
+        <p>
+          Enterprise-grade security keeps your
+          data safe and protected.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="testimonials">
+
+    <div class="section-title">
+
+      <h2>What Users Say</h2>
+
+      <p>
+        Trusted by creators and startups worldwide
+      </p>
+
+    </div>
+
+    <div class="testimonial-grid">
+
+      <div class="testimonial-card">
+
+        <p>
+          "NovaAI completely transformed our workflow.
+          It saved hours of manual work every week."
+        </p>
+
+        <h4>- Rahul Sharma</h4>
+
+      </div>
+
+      <div class="testimonial-card">
+
+        <p>
+          "The platform is super easy to use and
+          the AI automation features are amazing."
+        </p>
+
+        <h4>- Priya Verma</h4>
+
+      </div>
+
+      <div class="testimonial-card">
+
+        <p>
+          "Best startup tool we have used so far.
+          Highly recommended for growing businesses."
+        </p>
+
+        <h4>- Aman Gupta</h4>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+
+    <h2>
+      Ready To Grow Your Startup?
+    </h2>
+
+    <p>
+      Join thousands of businesses using NovaAI
+      to automate and scale faster.
+    </p>
+
+    <a href="#contact"
+      class="hero-btn">
+      Get Started
+    </a>
+
+  </section>
+
+  <!-- Contact -->
+  <section class="contact-section" id="contact">
+
+    <div class="section-title">
+
+      <h2>Contact Us</h2>
+
+      <p>
+        Have questions? We'd love to hear from you.
+      </p>
+
+    </div>
+
+    <div class="contact-container">
+
+      <!-- Left -->
+      <div class="contact-left">
+
+        <h3>Let's Connect</h3>
+
+        <p>
+          Reach out to our team for demos,
+          support, partnerships, or business inquiries.
+        </p>
+
+        <div class="contact-info">
+
+          <i class="bi bi-envelope-fill"></i>
+
+          <span>support@novaai.com</span>
+
+        </div>
+
+        <div class="contact-info">
+
+          <i class="bi bi-telephone-fill"></i>
+
+          <span>+91 9876543210</span>
+
+        </div>
+
+        <div class="contact-info">
+
+          <i class="bi bi-geo-alt-fill"></i>
+
+          <span>Mumbai, Maharashtra, India</span>
+
+        </div>
+
+      </div>
+
+      <!-- Right -->
+      <div class="contact-form">
+
+        <form>
+
+          <input type="text"
+            placeholder="Enter Your Name"
+            required>
+
+          <input type="email"
+            placeholder="Enter Your Email"
+            required>
+
+          <textarea rows="5"
+            placeholder="Enter Your Message"
+            required></textarea>
+
+          <button type="submit">
+            Send Message
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer>
+
+    <p>
+      © 2026 NovaAI | All Rights Reserved
+    </p>
+
+    <div style="margin-top:15px;">
+
+      <a href="#">
+        <i class="bi bi-facebook"></i>
+      </a>
+
+      <a href="#">
+        <i class="bi bi-instagram"></i>
+      </a>
+
+      <a href="#">
+        <i class="bi bi-linkedin"></i>
+      </a>
+
+      <a href="#">
+        <i class="bi bi-twitter-x"></i>
+      </a>
+
+    </div>
+
+  </footer>
+
+</body>
+
+</html>
